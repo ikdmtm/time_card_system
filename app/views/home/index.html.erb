@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <header><h1>出退勤管理システム</h1></header>
-    <main>
-        <% @cards.images.each do |image| %>
-            <%= image_tag image, width: 300, height: 200 %>
-        <% end %>
-        <!-- 画像2枚 -->
-    </main>
-    <footer></footer>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <header class="header-logo">出退勤管理システム</header>
+        <main>
+            <!-- 画像2枚 -->
+            <div class="date-form">
+                <%= form_with url: cards_path, method: :get do |f| %>
+                    <%= f.label :search_date, "日付", class: 'control-label' %>
+                    <%= f.date_field :search_date, class: 'form-control' %>
+                    <%= f.submit "検索" %>
+                <% end %>
+            </div>
+        </main>
+        <footer></footer>
+    </body>
 </html>

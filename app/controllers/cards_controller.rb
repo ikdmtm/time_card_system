@@ -1,7 +1,11 @@
 class CardsController < ApplicationController
 
     def index
-        
+        search_date = params[:search_date]
+        start_datetime = search_date.to_datetime.beginning_of_day
+        end_datetime = search_date.to_datetime.end_of_day
+        @result = Card.where(created_at: start_datetime..end_datetime).first
+        # @card = Card.where(created_at: params[:search_date]).first
     end
 
     def new
@@ -9,11 +13,12 @@ class CardsController < ApplicationController
     end
 
     def create
-        @card = Card.create(card_params)
+        # @card = Card.new(card_params)
+        @card = Card.new(arrival_time: params[:arrival_time], departure_time: params[:departure_time], arrival_image: params[:arrival_image], departure_image: params[:departure_image])
         if @card.save
-            redirect_to "/"
-        else
-            render :new
+            render json: @card, status: :created
+          else
+            render json: @card.errors, status: :unprocessable_entity
         end
     end
 
@@ -35,8 +40,9 @@ class CardsController < ApplicationController
         redirect_to "/"
     end
 
-    private
-    def card_params
-        params.require(:card).permit(:arrival_time, :departure_time, images: [])
-    end
+    # private
+    # def card_params
+    #     params.require(:card).permit(:arrival_time, :departure_time, :arrival_image, :departure_time)
+    # end
+    # ストロングパラメータでなぜかエラー
 end

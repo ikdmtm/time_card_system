@@ -1,24 +1,13 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+データ確認用のWebアプリ
 
-Things you may want to cover:
+* Ruby: 3.1.4
+* Ruby on Rails: 7.0.3
 
-* Ruby version
+サーバーを起動
+```
+rails s
+```
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+http://lcalhost:3000にアクセスして確認

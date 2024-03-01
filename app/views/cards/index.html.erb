@@ -10,9 +10,25 @@
         <main>
             <!-- 画像2枚 -->
             <div class="date-form">
-                <%= form_with model: @user do |f| %>
-                    <%= f.label :created_at, "日付", class: 'control-label' %>
-                    <%= f.date_field :created_at, class: 'form-control' %>
+                <%= form_with url: cards_path, method: :get do |f| %>
+                    <%= f.label :search_date, "日付", class: 'control-label' %>
+                    <%= f.date_field :search_date, class: 'form-control' %>
+                    <%= f.submit "検索" %>
+                <% end %>
+            </div>
+            <div class="images">
+                <% if @result.present? %>
+                    <div class="left-image">
+                        <%= image_tag "data:image/png;base64, #{@result.arrival_image}" %>
+                        <p>出勤  <%= @result.arrival_time %></p>
+                    </div>
+                    <div class="right-image">
+                        <%= image_tag "data:image/png;base64, #{@result.departure_image}" %>
+                        <p>退勤  <%= @result.departure_time %></p>
+                    </div>
+                <% else %>
+                    <!-- @cardがnilの場合の処理 -->
+                    <p>データなし</p>
                 <% end %>
             </div>
         </main>
