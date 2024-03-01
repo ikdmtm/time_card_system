@@ -10,4 +10,4 @@
 rails s
 ```
 
-http://lcalhost:3000にアクセスして確認
+http://lcalhost:3000 にアクセスして確認
